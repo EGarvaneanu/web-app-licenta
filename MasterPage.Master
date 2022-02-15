@@ -1,0 +1,78 @@
+﻿ <%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="WebAppLicenta.MasterPage" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <link href="CSS/homepage.css" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" ></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <asp:LinkButton class="navbar-brand" ID="btnHome" runat="server" OnClick="btnHome_Click" CausesValidation="false"><i class="fa fa-home" aria-hidden="true"></i></asp:LinkButton>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                        <asp:Button ID="btnInregistrare" CausesValidation="false" class="nav-link btn btn-light" runat="server" OnClick="LnkInregistrare_Click" Text="Inregistrare"></asp:Button>
+                        </li>
+                        <li class="nav-item">
+                        <asp:Button ID="btnIncarcareDocumente" CausesValidation="false" class="nav-link btn btn-light" runat="server" OnClick="LnkIncarcareDocumente_Click" Text="Incarcare documente" />
+                        </li>
+                        <li class="nav-item">
+                        <asp:Button ID="btnCerereAngajare" CausesValidation="false" class="nav-link btn btn-light" runat="server" OnClick="btnCerereAngajare_Click" Text="Genereaza cerere angajare" />   
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Referate de plata cu ora
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <asp:LinkButton class="dropdown-item  btn btn-light" CausesValidation="false" ID="btnGenerareReferate" runat="server" OnClick="btnGenerareReferate_Click">Generare referate</asp:LinkButton>
+                            <div class="dropdown-divider"></div>
+                            <asp:LinkButton class="dropdown-item  btn btn-light" CausesValidation="false" ID="btnModificareReferate" runat="server" OnClientClick="this.disabled=true;">Modificare referate</asp:LinkButton>
+                           </div>
+                        </li>
+                    </ul>
+                    <!--Detalii utilizator-->                      
+                    <ul class =" nav navbar-nav pull-right">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <% Response.Write(Session["Director"]); %>
+                            <% Response.Write(Session["Profesor"]); %>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <asp:Button ID="btnProfil" CausesValidation="false" class="btn btn-light" runat="server" Text="Vizualizeaza profil" OnClientClick="this.disabled=true;"/>                           
+                                <asp:Button ID="btnSchimbaParola" CausesValidation="false" class="btn btn-light" runat="server" Text="Schimba parola" OnClick="btnSchimbaParola_Click" />
+                                <div class="dropdown-divider"></div>
+                                <asp:Button ID="btnDeconectare" CausesValidation="false" class="btn btn-light" runat="server" Text="Deconectare" OnClick="btnDeconectare_Click" />
+                                <asp:Button ID="btnResetParola" CausesValidation="false" runat="server" Text="Mi-am uitat parola" OnClick="btnResetParola_Click" />
+                            </div>
+                        </li>
+                        <li>
+                            <asp:Button ID="btnLogare" CausesValidation="false" class="btn btn-light" runat="server" Text="    Logare    " OnClick="btnLogare_Click" />
+                        </li>
+                    </ul>
+                </div>          
+            </nav>
+
+
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>
